@@ -1,0 +1,635 @@
+# ███    ███  █████  ██████  ███████     ██████  ██    ██     ██████   █████  ███    ███ 
+# ████  ████ ██   ██ ██   ██ ██          ██   ██  ██  ██      ██   ██ ██   ██ ████  ████ 
+# ██ ████ ██ ███████ ██   ██ █████       ██████    ████       ██████  ███████ ██ ████ ██ 
+# ██  ██  ██ ██   ██ ██   ██ ██          ██   ██    ██        ██   ██ ██   ██ ██  ██  ██ 
+ #██      ██ ██   ██ ██████  ███████     ██████     ██        ██   ██ ██   ██ ██      ██ 
+#                                                                                     
+from telegram import Update , Video 
+import asyncio
+from telegram import Update, Sticker
+from telegram import ReplyKeyboardMarkup, KeyboardButton , ReplyKeyboardRemove, request, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import Application,ChatMemberHandler, CommandHandler,CallbackQueryHandler, MessageHandler, filters, ContextTypes, CallbackContext,ChosenInlineResultHandler,InlineQueryHandler,InvalidCallbackData,PersistenceInput
+import os
+import asyncio
+from datetime import datetime, timedelta
+import logging
+import random
+import requests
+import telegram
+import requests
+import os
+import time
+import tempfile
+from tqdm import tqdm
+import os
+import sqlite3
+from telegram import Update
+from telegram.ext import Updater, CommandHandler, MessageHandler, filters, CallbackContext
+from datetime import datetime, timedelta
+import logging
+import asyncio
+
+import linecache
+TOKEN = '7331929573:AAFthxYc3QRc1ce6jHQgH5nFQYIZeua1c5k'
+bot = telegram.Bot(TOKEN)
+
+
+
+
+
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+PRO="https://t.me/+QWKEGxWPHmdlZTE1\n𝗕𝘆 𝗮𝗱𝗱𝗶𝗻𝗴 𝘁𝗵𝗶𝘀 𝗯𝗼𝘁 𝘁𝗼 𝘁𝗵𝗲 𝗴𝗿𝗼𝘂𝗽 𝘆𝗼𝘂 𝘄𝗶𝗹𝗹 𝗴𝗲𝘁 𝗽𝗿𝗲𝗺𝗶𝘂𝗺 𝐂𝐩🥵𝐑𝐩 𝘃𝗶𝗱𝗲𝗼\n\n𝗖𝗹𝗶𝗰𝗸 𝗵𝗲𝗿𝗲 𝘁𝗼 𝗮𝗱𝗱 𝘁𝗼 𝗯𝗼𝘁 𝗴𝗿𝗼𝘂𝗽👇"
+GROUP_1='https://t.me/+Jt5pYTXJXzk1YTE9'   #BROSIS
+GROUP_2='https://t.me/+zMp7NozuQjtlYjk9'   #MOMSON
+GROUP_3='https://t.me/+2YM2N3lVaJQ1YTY1'    #AUNCLE    
+VIDEO_CHANNEL_1=-1002168320535
+VIDEO_CHANNEL_2=-1002161236429
+VIDEO_CHANNEL_3=-1002171887114
+VIDEO_CHANNEL_4=-1002157836220
+VIDEO_CHANNEL_5=-1002180026599
+VIDEO_CHANNEL_6=-1002158466204
+VIDEO_GROUP=-1002214374198
+# -1002222531570
+BOT_NAME="Direct Adult Video Bot❤️"
+BOT_JOIN_IN_GROUP ='https://t.me/DirectadultVideobot?startgroup=true'
+RUNNING_GROUP='https://t.me/+zMp7NozuQjtlYjk9'
+BACKUP_CHANNEL='https://t.me/Join_Adult_Backup'
+# SHARE_BOT_LINK='https://telegram.me/share/url?url=https://t.me/DirectadultVideobot?start'
+SHARE_BOT_LINK='https://t.me/DirectadultVideobot'
+
+
+
+# Files to store chat IDs and block list
+CHAT_ID_FILE = 'chat_ids.txt'
+BLOCKED_CHAT_ID_FILE = 'blocked_chat_ids.txt'
+POINTS_FILE = 'points.txt'
+REFERRALS_FILE = 'referrals.txt'
+CHANNEL_USERNAME = '@RAM_0C'
+
+
+
+async def save_chat_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    chat_id = str(update.message.chat_id)
+    if not os.path.exists(CHAT_ID_FILE):
+        with open(CHAT_ID_FILE, 'w') as file:
+            file.write(chat_id + '\n')
+    else:
+        with open(CHAT_ID_FILE, 'r') as file:
+            chat_ids = file.readlines()
+        if chat_id + '\n' not in chat_ids:
+            with open(CHAT_ID_FILE, 'a') as file:
+                file.write(chat_id + '\n')
+        else:
+            with open(CHAT_ID_FILE, 'r') as file:
+               chat_ids = file.readlines()
+            if chat_id + '\n' not in chat_ids:
+               with open(CHAT_ID_FILE, 'a') as file:
+                file.write(chat_id + '\n')
+        #         buttonop = InlineKeyboardButton(
+        #         text='𝐑𝐄𝐅𝐄𝐑 & 𝐈𝐍𝐂𝐑📈𝐋𝐄𝐕𝐄𝐋𝐒',
+        #         url=f'https://telegram.me/share/url?url=https://t.me/Swati_Misra_Video_bot?start={chat_id}'
+        #         )
+        #         XXS = [[buttonop]]
+        #         reply_markup = InlineKeyboardMarkup(XXS)
+        # # LINK_WITH_CHAT_ID ="https://telegram.me/share/url?url=https://t.me/Swati_Misra_Video_bot?start={chat_id}"
+        # await update.message.reply_text(f"𝗧𝗢 𝗚𝗘𝗧 𝗖𝗣 𝗔𝗡𝗗 𝗥𝗣\n\n━━━━━━━━━━━━━━━━━━━━━━━━━\n๏𝗕𝘆 𝗮𝗱𝗱𝗶𝗻𝗴 𝘁𝗵𝗶𝘀 𝗯𝗼𝘁 𝘁𝗼 𝘁𝗵𝗲 𝗴𝗿𝗼𝘂𝗽 𝘆𝗼𝘂 𝘄𝗶𝗹𝗹 𝗴𝗲𝘁 𝗽𝗿𝗲𝗺𝗶𝘂𝗺 𝐂𝐩🥵𝐑𝐩 𝘃𝗶𝗱𝗲𝗼 \n\n➻𝗖𝗹𝗶𝗰𝗸 𝗵𝗲𝗿𝗲 𝘁𝗼 𝗮𝗱𝗱 𝘁𝗼 𝗯𝗼𝘁 𝗴𝗿𝗼𝘂𝗽👇\n {BOT_JOIN_IN_GROUP}\n\n\n\n\n━━━━━━━━━━━━━━━━━━━━━━━━━\n๏𝗦𝗵𝗮𝗿𝗲 𝘁𝗵𝗶𝘀 𝗕𝗼𝘁 𝗹𝗶𝗻𝗸 𝗪𝗶𝘁𝗵 𝘆𝗼𝘂𝗿 𝗖𝗛𝗔𝗧_𝗜𝗗 𝘄𝗶𝘁𝗵 𝟮𝟬 𝗨𝘀𝗲𝗿 𝘁𝗼 𝗴𝗲𝘁 𝐂𝐩🥵𝐑𝐩 𝗩𝗶𝗱𝗲𝗼𝘀 👇\n {LINK_WITH_CHAT_ID}\n\n\n\n\n\n🌟𝐘𝐎𝐔𝐑 𝐑𝐄𝐅𝐄𝐑𝐑𝐀𝐋𝐒: {points}🌟\n━━━━━━━━━━━━━━━━━\n\nइस बॉट लिंक को अपने  𝗖𝗛𝗔𝗧_𝗜𝗗 के साथ 20 लोगों तक साझा करें और  𝐂𝐩🥵𝐑𝐩 वीडियो प्राप्त करें👇\n{LINK_WITH_CHAT_ID}")
+
+
+
+# Function to save chat ID
+async def save_chat_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(f"нєу  🥀,\n\n๏ᴛʜɪs ɪs ᴀ  𝐏ʀɴ 𝐕ɪᴅᴇᴏ 𝐁ᴏᴛ🥵!!\n➻ᴘʟᴇᴀsᴇ sᴇʟᴇᴄᴛ ᴛʜᴇ ᴛʏᴘᴇ ᴏғ ᴠɪᴅᴇᴏ ʏᴏᴜ ᴡᴀɴᴛ\n\n➻ᴊᴏɪɴ ʙᴀᴄᴋᴜᴘ\nɪғ ᴛʜᴇ ʙᴏᴛ ɪs ʙᴀɴɴᴇᴅ ʙʏ ᴛᴇʟᴇɢʀᴀᴍ, ᴊᴏɪɴ ʙᴀᴄᴋᴜᴘ ᴛᴏ sᴛᴀʏ ᴄᴏɴɴᴇᴄᴛᴇᴅ🤝\n\n𝗝𝗼𝗶𝗻 𝗕𝗮𝗰𝗸𝘂𝗽👇\n{RUNNING_GROUP}", reply_markup=keyboard1)
+       
+    await update.message.reply_text(f"𝗕𝘆 𝗮𝗱𝗱𝗶𝗻𝗴 𝘁𝗵𝗶𝘀 𝗯𝗼𝘁 𝘁𝗼 𝘁𝗵𝗲 𝗴𝗿𝗼𝘂𝗽 𝘆𝗼𝘂 𝘄𝗶𝗹𝗹 𝗴𝗲𝘁 𝗽𝗿𝗲𝗺𝗶𝘂𝗺 𝐂𝐩🥵𝐑𝐩 𝘃𝗶𝗱𝗲𝗼\n\n𝗖𝗹𝗶𝗰𝗸 𝗵𝗲𝗿𝗲 𝘁𝗼 𝗮𝗱𝗱 𝘁𝗼 𝗯𝗼𝘁 𝗴𝗿𝗼𝘂𝗽👇\n{BOT_JOIN_IN_GROUP}")
+    
+    chat_id = str(update.message.chat_id)
+    points = await read_points()
+    user_points = points.get(chat_id, 0)
+
+    if not os.path.exists(CHAT_ID_FILE):
+        with open(CHAT_ID_FILE, 'w') as file:
+            file.write(chat_id + '\n')
+    else:
+        with open(CHAT_ID_FILE, 'r') as file:
+            chat_ids = file.readlines()
+        if chat_id + '\n' not in chat_ids:
+            with open(CHAT_ID_FILE, 'a') as file:
+                file.write(chat_id + '\n')
+    
+    buttonop = InlineKeyboardButton(
+        text='𝐑𝐄𝐅𝐄𝐑 & 𝐈𝐍𝐂𝐑📈𝐋𝐄𝐕𝐄𝐋𝐒',
+        url=f'{SHARE_BOT_LINK}={chat_id}'
+    )
+    XXS = [[buttonop]]
+    reply_markup = InlineKeyboardMarkup(XXS)
+    
+    LINK_WITH_CHAT_ID = f'{SHARE_BOT_LINK}={chat_id}'
+    
+    await update.message.reply_text(
+        f'𝗧𝗢 𝗚𝗘𝗧 𝗖𝗣 𝗔𝗡𝗗 𝗥𝗣\n\n━━━━━━━━━━━━━━━━━━━━━━━━━\n๏𝗕𝘆 𝗮𝗱𝗱𝗶𝗻𝗴 𝘁𝗵𝗶𝘀 𝗯𝗼𝘁 𝘁𝗼 𝘁𝗵𝗲 𝗴𝗿𝗼𝘂𝗽 𝘆𝗼𝘂 𝘄𝗶𝗹𝗹 𝗴𝗲𝘁 𝗽𝗿𝗲𝗺𝗶𝘂𝗺 𝐂𝐩🥵𝐑𝐩 𝘃𝗶𝗱𝗲𝗼 \n\n➻𝗖𝗹𝗶𝗰𝗸 𝗵𝗲𝗿𝗲 𝘁𝗼 𝗮𝗱𝗱 𝘁𝗼 𝗯𝗼𝘁 𝗴𝗿𝗼𝘂𝗽👇\n{BOT_JOIN_IN_GROUP}\n\n\n\n\n━━━━━━━━━━━━━━━━━━━━━━━━━\n๏𝗦𝗵𝗮𝗿𝗲 𝘁𝗵𝗶𝘀 𝗕𝗼𝘁 𝗹𝗶𝗻𝗸 𝗪𝗶𝘁𝗵 𝘆𝗼𝘂𝗿 𝗖𝗛𝗔𝗧_𝗜𝗗 𝘄𝗶𝘁𝗵 𝟮𝟬 𝗨𝘀𝗲𝗿 𝘁𝗼 𝗴𝗲𝘁 𝐂𝐩🥵𝐑𝐩 𝗩𝗶𝗱𝗲𝗼𝘀 👇\n{LINK_WITH_CHAT_ID}\n\n\n\n\n\n🌟𝐘𝐎𝐔𝐑 𝐑𝐄𝐅𝐄𝐑𝐑𝐀𝐋𝐒: {user_points}🌟\n━━━━━━━━━━━━━━━━━\n\nइस बॉट लिंक को अपने  𝗖𝗛𝗔𝗧_𝗜𝗗 के साथ 20 लोगों तक साझा करें और  𝐂𝐩🥵𝐑𝐩 वीडियो प्राप्त करें👇\n{LINK_WITH_CHAT_ID}',
+        reply_markup=reply_markup
+    )
+
+
+async def save_chat_cp(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+    chat_id = str(update.message.chat_id)
+    points = read_points()
+    user_points = points.get(chat_id, 0)
+
+
+
+
+
+
+    chat_id = str(update.message.chat_id)
+    if not os.path.exists(CHAT_ID_FILE):
+        with open(CHAT_ID_FILE, 'w') as file:
+            file.write(chat_id + '\n')
+    else:
+        with open(CHAT_ID_FILE, 'r') as file:
+            chat_ids = file.readlines()
+        if chat_id + '\n' not in chat_ids:
+            with open(CHAT_ID_FILE, 'a') as file:
+                file.write(chat_id + '\n')
+    buttonop = InlineKeyboardButton(
+        text='𝐑𝐄𝐅𝐄𝐑 & 𝐈𝐍𝐂𝐑📈𝐋𝐄𝐕𝐄𝐋𝐒',
+        url=f'{SHARE_BOT_LINK}={chat_id}'
+    )
+    XXS = [[buttonop]]
+    reply_markup = InlineKeyboardMarkup(XXS)
+    LINK_WITH_CHAT_ID = f'{SHARE_BOT_LINK}={chat_id}'
+    await update.message.reply_text(f'𝗧𝗢 𝗚𝗘𝗧 𝗖𝗣 𝗔𝗡𝗗 𝗥𝗣\n\n━━━━━━━━━━━━━━━━━━━━━━━━━\n๏𝗕𝘆 𝗮𝗱𝗱𝗶𝗻𝗴 𝘁𝗵𝗶𝘀 𝗯𝗼𝘁 𝘁𝗼 𝘁𝗵𝗲 𝗴𝗿𝗼𝘂𝗽 𝘆𝗼𝘂 𝘄𝗶𝗹𝗹 𝗴𝗲𝘁 𝗽𝗿𝗲𝗺𝗶𝘂𝗺 𝐂𝐩🥵𝐑𝐩 𝘃𝗶𝗱𝗲𝗼 \n\n➻𝗖𝗹𝗶𝗰𝗸 𝗵𝗲𝗿𝗲 𝘁𝗼 𝗮𝗱𝗱 𝘁𝗼 𝗯𝗼𝘁 𝗴𝗿𝗼𝘂𝗽👇\n{BOT_JOIN_IN_GROUP}\n\n\n\n\n━━━━━━━━━━━━━━━━━━━━━━━━━\n๏𝗦𝗵𝗮𝗿𝗲 𝘁𝗵𝗶𝘀 𝗕𝗼𝘁 𝗹𝗶𝗻𝗸 𝗪𝗶𝘁𝗵 𝘆𝗼𝘂𝗿 𝗖𝗛𝗔𝗧_𝗜𝗗 𝘄𝗶𝘁𝗵 𝟮𝟬 𝗨𝘀𝗲𝗿 𝘁𝗼 𝗴𝗲𝘁 𝐂𝐩🥵𝐑𝐩 𝗩𝗶𝗱𝗲𝗼𝘀 👇\n{LINK_WITH_CHAT_ID}\n\n\n\n\n\n🌟𝐘𝐎𝐔𝐑 𝐑𝐄𝐅𝐄𝐑𝐑𝐀𝐋𝐒: {points}🌟\n━━━━━━━━━━━━━━━━━\n\nइस बॉट लिंक को अपने  𝗖𝗛𝗔𝗧_𝗜𝗗 के साथ 20 लोगों तक साझा करें और  𝐂𝐩🥵𝐑𝐩 वीडियो प्राप्त करें👇\n{LINK_WITH_CHAT_ID}')#, reply_markup=reply_markup)
+
+
+async def save_chat_rp(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+
+    chat_id = str(update.message.chat_id)
+    points = read_points()
+    user_points = points.get(chat_id, 0)
+
+
+
+
+
+
+    chat_id = str(update.message.chat_id)
+    if not os.path.exists(CHAT_ID_FILE):
+        with open(CHAT_ID_FILE, 'w') as file:
+            file.write(chat_id + '\n')
+    else:
+        with open(CHAT_ID_FILE, 'r') as file:
+            chat_ids = file.readlines()
+        if chat_id + '\n' not in chat_ids:
+            with open(CHAT_ID_FILE, 'a') as file:
+                file.write(chat_id + '\n')
+    buttonop = InlineKeyboardButton(
+        text='𝐑𝐄𝐅𝐄𝐑 & 𝐈𝐍𝐂𝐑📈𝐋𝐄𝐕𝐄𝐋𝐒',
+        url=f'{SHARE_BOT_LINK}={chat_id}'
+    )
+    XXS = [[buttonop]]
+    reply_markup = InlineKeyboardMarkup(XXS)
+    LINK_WITH_CHAT_ID = f'{SHARE_BOT_LINK}={chat_id}'
+    await update.message.reply_text(f'𝗧𝗢 𝗚𝗘𝗧 𝗖𝗣 𝗔𝗡𝗗 𝗥𝗣\n\n━━━━━━━━━━━━━━━━━━━━━━━━━\n๏𝗕𝘆 𝗮𝗱𝗱𝗶𝗻𝗴 𝘁𝗵𝗶𝘀 𝗯𝗼𝘁 𝘁𝗼 𝘁𝗵𝗲 𝗴𝗿𝗼𝘂𝗽 𝘆𝗼𝘂 𝘄𝗶𝗹𝗹 𝗴𝗲𝘁 𝗽𝗿𝗲𝗺𝗶𝘂𝗺 𝐂𝐩🥵𝐑𝐩 𝘃𝗶𝗱𝗲𝗼 \n\n➻𝗖𝗹𝗶𝗰𝗸 𝗵𝗲𝗿𝗲 𝘁𝗼 𝗮𝗱𝗱 𝘁𝗼 𝗯𝗼𝘁 𝗴𝗿𝗼𝘂𝗽👇\n{BOT_JOIN_IN_GROUP}\n\n\n\n\n━━━━━━━━━━━━━━━━━━━━━━━━━\n๏𝗦𝗵𝗮𝗿𝗲 𝘁𝗵𝗶𝘀 𝗕𝗼𝘁 𝗹𝗶𝗻𝗸 𝗪𝗶𝘁𝗵 𝘆𝗼𝘂𝗿 𝗖𝗛𝗔𝗧_𝗜𝗗 𝘄𝗶𝘁𝗵 𝟮𝟬 𝗨𝘀𝗲𝗿 𝘁𝗼 𝗴𝗲𝘁 𝐂𝐩🥵𝐑𝐩 𝗩𝗶𝗱𝗲𝗼𝘀 👇\n{LINK_WITH_CHAT_ID}\n\n\n\n\n\n🌟𝐘𝐎𝐔𝐑 𝐑𝐄𝐅𝐄𝐑𝐑𝐀𝐋𝐒: {user_points}🌟\n━━━━━━━━━━━━━━━━━\n\nइस बॉट लिंक को अपने  𝗖𝗛𝗔𝗧_𝗜𝗗 के साथ 20 लोगों तक साझा करें और  𝐂𝐩🥵𝐑𝐩 वीडियो प्राप्त करें👇\n{LINK_WITH_CHAT_ID}')#, reply_markup=reply_markup)
+
+
+
+
+
+
+
+
+
+
+# Function to read chat IDs from file
+def read_chat_ids(file_name=CHAT_ID_FILE):
+    with open(file_name, 'r') as file:
+       chat_ids = file.readlines()
+    return [chat_id.strip() for chat_id in chat_ids]
+
+# Function to read blocked chat IDs from file
+def read_blocked_chat_ids(file_name=BLOCKED_CHAT_ID_FILE):
+    if not os.path.exists(file_name):
+        return []
+    with open(file_name, 'r') as file:
+        chat_ids = file.readlines()
+    return [chat_id.strip() for chat_id in chat_ids]
+
+# Function to read points from file
+def read_points():
+    if not os.path.exists(POINTS_FILE):
+        return {}
+    with open(POINTS_FILE, 'r') as file:
+        lines = file.readlines()
+    points = {}
+    for line in lines:
+        chat_id, point = line.strip().split()
+        points[chat_id] = int(point)
+    return points
+
+# Function to write points to file
+def write_points(points):
+    with open(POINTS_FILE, 'w') as file:
+        for chat_id, point in points.items():
+            file.write(f"{chat_id} {point}\n")
+
+# Function to add point to user
+def add_point(chat_id):
+    points = read_points()
+    if chat_id in points:
+        points[chat_id] += 1
+    else:
+        points[chat_id] = 1
+    write_points(points)
+
+# Function to check if a user has already been referred
+def is_already_referred(referrer_id, referred_id):
+    if not os.path.exists(REFERRALS_FILE):
+        return False
+    with open(REFERRALS_FILE, 'r') as file:
+        lines = file.readlines()
+    for line in lines:
+        referrer, referred = line.strip().split()
+        if referrer == referrer_id and referred == referred_id:
+            return True
+    return False
+
+# Function to add a referral
+def add_referral(referrer_id, referred_id):
+    with open(REFERRALS_FILE, 'a') as file:
+        file.write(f"{referrer_id} {referred_id}\n")
+
+# Function to broadcast message
+async def broadcast_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not context.args or len(context.args) == 0:
+        await update.message.reply_text('Please provide a message to broadcast.')
+        return
+
+    message = ' '.join(context.args)
+    chat_ids = read_chat_ids()
+    blocked_chat_ids = read_blocked_chat_ids()
+    
+    for chat_id in chat_ids:
+        try:
+            await context.bot.send_message(chat_id=chat_id, text=message,reply_markup=keyboard1)
+        except Exception as e:
+            print(f"Failed to send message to {chat_id}: {e}")
+            if chat_id not in blocked_chat_ids:
+                blocked_chat_ids.append(chat_id)
+                with open(BLOCKED_CHAT_ID_FILE, 'a') as file:
+                    file.write(chat_id + '\n')
+    await update.message.reply_text('Message broadcasted to all users.')
+
+
+
+async def info(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    chat_ids = read_chat_ids()
+    blocked_chat_ids = read_blocked_chat_ids()
+    total_users = len(chat_ids)
+    blocked_users = len(blocked_chat_ids)
+    message = (
+        f"Total users: {total_users}\n"
+        f"Blocked users: {blocked_users}\n"
+    )
+    await update.message.reply_text(message)
+
+# Points command handler
+async def points(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    chat_id = str(update.message.chat_id)
+    points = read_points()
+    user_points = points.get(chat_id, 0)
+    await update.message.reply_text(f"You have {user_points} points.")
+
+
+
+
+
+
+
+
+
+
+ 
+
+keyboard_buttons = [
+    ["✅𝐁𝐀𝐂𝐊𝐔𝐏","𝐁𝐑𝐀𝐙𝐙𝐄𝐑𝐒👗𝐕𝐈𝐃$𝐏𝐈𝐂"],
+    ["𝗠𝗢𝗠🎥𝐕𝐈𝐃𝐄𝐎", "𝐑𝐏🍆 𝐂𝐏🍌"],
+    ["𝐃𝐄𝐒𝐈💋𝐕𝐈𝐃𝐄𝐎$𝐏𝐈𝐂","🥵𝘾𝙊𝙇𝙇𝙀𝙂𝙀👙"],
+    ["𝘼𝙈𝙀𝙍𝙄𝘾𝘼𝙉❤️","𝙏𝘼𝙈𝙄𝙇🍌"]
+]
+   # ["🎥𝐇𝐎𝐖 𝐓𝐎 𝐏𝐋𝐀𝐘 वीडियो कैसे चलाएं🥵"]
+
+
+keyboard1 = ReplyKeyboardMarkup(keyboard_buttons, resize_keyboard=True, one_time_keyboard=True)
+
+
+async def start_command(update: Update, context: CallbackContext):
+    print(update)
+    await save_chat_start(update, context)
+    referrer_chat_id = context.args[0] if context.args else None
+    new_chat_id = str(update.message.chat_id)
+    # await save_chat_start(update, context)
+    if referrer_chat_id and not is_already_referred(referrer_chat_id, new_chat_id):
+        add_point(referrer_chat_id)
+        add_referral(referrer_chat_id, new_chat_id)
+
+
+
+async def handle_cp(update: Update, context: CallbackContext):
+    await update.message.reply_text(f'{PRO}\n{BOT_JOIN_IN_GROUP}',reply_markup=keyboard1)
+ 
+    
+    await save_chat_cp(update, context)
+    referrer_chat_id = context.args[0] if context.args else None
+    new_chat_id = str(update.message.chat_id)
+    if referrer_chat_id and not is_already_referred(referrer_chat_id, new_chat_id):
+        add_point(referrer_chat_id)
+        add_referral(referrer_chat_id, new_chat_id)
+
+
+async def handle_rp(update: Update, context: CallbackContext):
+    await update.message.reply_text(f'{PRO}\n{BOT_JOIN_IN_GROUP}',reply_markup=keyboard1)
+ 
+    
+    await save_chat_rp(update, context)
+    referrer_chat_id = context.args[0] if context.args else None
+    new_chat_id = str(update.message.chat_id)
+    if referrer_chat_id and not is_already_referred(referrer_chat_id, new_chat_id):
+        add_point(referrer_chat_id)
+        add_referral(referrer_chat_id, new_chat_id)
+
+
+async def BACK(update: Update, context: CallbackContext):
+    await update.message.reply_text(f'𝗝𝗢𝗜𝗡 𝗕𝗔𝗖𝗞𝗨𝗣👇 🤝⤵️\n{BACKUP_CHANNEL}\n{BACKUP_CHANNEL}\n𝗕𝗨𝗬 𝗖𝗽 𝗥𝗽⤴️\n\nBROTHER SISTER☞ {GROUP_1}\n\nMOM AND SON☞ {GROUP_2}\n\nUNCLE AUNTY☞ {GROUP_3}')
+                
+    button_join_backup = InlineKeyboardButton(
+        text='✅𝐉𝐎𝐈𝐍 𝐁𝐀𝐂𝐊𝐔𝐏📊', 
+        url='https://t.me/Join_Adult_Backup'
+    )
+    
+    keyboard = [[button_join_backup]]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    message_text = (f'{PRO}\n{BOT_JOIN_IN_GROUP}\n\n\n\n✅𝐉𝐎𝐈𝐍 𝐁𝐀𝐂𝐊𝐔𝐏📊\n{BACKUP_CHANNEL}')
+    await update.message.reply_text(message_text, reply_markup=reply_markup)
+    await save_chat_id(update, context) 
+
+
+
+
+async def MOM_AME(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    # Reply with a specific text
+    await update.message.reply_text(f'{PRO}\n{BOT_JOIN_IN_GROUP}',reply_markup=keyboard1)
+ 
+    
+    try:
+        message_id = random.randint(1, 4526)
+        
+        # Copy a random message from the channel to the target group
+        copied_message = await context.bot.copy_message(
+            chat_id=VIDEO_GROUP,
+            from_chat_id=VIDEO_CHANNEL_6,
+            message_id=message_id
+        )
+
+        # Copy the same message back to the user with a caption
+        CAPTION = f"𝗝𝗢𝗜𝗡 𝗕𝗔𝗖𝗞𝗨𝗣👇 🤝⤵️\n{BACKUP_CHANNEL}\n{BACKUP_CHANNEL}\n𝗕𝗨𝗬 𝗖𝗽 𝗥𝗽⤴️\n\nBROTHER SISTER☞ {GROUP_1}\n\nMOM AND SON☞ {GROUP_2}\n\nUNCLE AUNTY☞ {GROUP_3}" 
+        await context.bot.copy_message(
+            chat_id=update.message.chat_id,
+            from_chat_id=VIDEO_GROUP,
+            message_id=copied_message.message_id,
+            caption=CAPTION
+        )
+    except Exception as e:
+        # Handle any errors
+        await update.message.reply_text(f'Error: {e}')
+
+async def TMIL(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    # Reply with a specific text
+    await update.message.reply_text(f'{PRO}\n{BOT_JOIN_IN_GROUP}',reply_markup=keyboard1)
+ 
+    
+    try:
+        message_id = random.randint(1, 1543)
+        
+        # Copy a random message from the channel to the target group
+        copied_message = await context.bot.copy_message(
+            chat_id=VIDEO_GROUP,
+            from_chat_id=VIDEO_CHANNEL_4,
+            message_id=message_id
+        )
+
+        # Copy the same message back to the user with a caption
+        CAPTION = f"𝗝𝗢𝗜𝗡 𝗕𝗔𝗖𝗞𝗨𝗣👇 🤝⤵️\n{BACKUP_CHANNEL}\n{BACKUP_CHANNEL}\n𝗕𝗨𝗬 𝗖𝗽 𝗥𝗽⤴️\n\nBROTHER SISTER☞ {GROUP_1}\n\nMOM AND SON☞ {GROUP_2}\n\nUNCLE AUNTY☞ {GROUP_3}" 
+        await context.bot.copy_message(
+            chat_id=update.message.chat_id,
+            from_chat_id=VIDEO_GROUP,
+            message_id=copied_message.message_id,
+            caption=CAPTION
+        )
+    except Exception as e:
+        # Handle any errors
+        await update.message.reply_text(f'Error: {e}')
+
+
+async def SCHOOL_CLG(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    # Reply with a specific text
+    await update.message.reply_text(f'{PRO}\n{BOT_JOIN_IN_GROUP}',reply_markup=keyboard1)
+ 
+    
+    try:
+        message_id = random.randint(1, 1101)
+        
+        # Copy a random message from the channel to the target group
+        copied_message = await context.bot.copy_message(
+            chat_id=VIDEO_GROUP,
+            from_chat_id=VIDEO_CHANNEL_5,
+            message_id=message_id
+        )
+
+        # Copy the same message back to the user with a caption
+        CAPTION = f"𝗝𝗢𝗜𝗡 𝗕𝗔𝗖𝗞𝗨𝗣👇 🤝⤵️\n{BACKUP_CHANNEL}\n{BACKUP_CHANNEL}\n𝗕𝗨𝗬 𝗖𝗽 𝗥𝗽⤴️\n\nBROTHER SISTER☞ {GROUP_1}\n\nMOM AND SON☞ {GROUP_2}\n\nUNCLE AUNTY☞ {GROUP_3}" 
+        await context.bot.copy_message(
+            chat_id=update.message.chat_id,
+            from_chat_id=VIDEO_GROUP,
+            message_id=copied_message.message_id,
+            caption=CAPTION
+        )
+    except Exception as e:
+        # Handle any errors
+        await update.message.reply_text(f'Error: {e}')
+
+
+async def american(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    # Reply with a specific text
+    await update.message.reply_text(f'{PRO}\n{BOT_JOIN_IN_GROUP}',reply_markup=keyboard1)
+ 
+    
+    try:
+        message_id = random.randint(1, 1599)
+        
+        # Copy a random message from the channel to the target group
+        copied_message = await context.bot.copy_message(
+            chat_id=VIDEO_GROUP,
+            from_chat_id=VIDEO_CHANNEL_3,
+            message_id=message_id
+        )
+
+        # Copy the same message back to the user with a caption
+        CAPTION = f"𝗝𝗢𝗜𝗡 𝗕𝗔𝗖𝗞𝗨𝗣👇 🤝⤵️\n{BACKUP_CHANNEL}\n{BACKUP_CHANNEL}\n𝗕𝗨𝗬 𝗖𝗽 𝗥𝗽⤴️\n\nBROTHER SISTER☞ {GROUP_1}\n\nMOM AND SON☞ {GROUP_2}\n\nUNCLE AUNTY☞ {GROUP_3}" 
+        await context.bot.copy_message(
+            chat_id=update.message.chat_id,
+            from_chat_id=VIDEO_GROUP,
+            message_id=copied_message.message_id,
+            caption=CAPTION
+        )
+    except Exception as e:
+        # Handle any errors
+        await update.message.reply_text(f'Error: {e}')
+
+async def BRAZZ(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text(f'{PRO}\n{BOT_JOIN_IN_GROUP}',reply_markup=keyboard1)
+ 
+    
+    try:
+        message_id = random.randint(1, 1526)
+        
+        # Copy a random message from the channel to the target group
+        copied_message = await context.bot.copy_message(
+            chat_id=VIDEO_GROUP,
+            from_chat_id=VIDEO_CHANNEL_6,
+            message_id=message_id
+        )
+
+        # Copy the same message back to the user with a caption
+        CAPTION = f"𝗝𝗢𝗜𝗡 𝗕𝗔𝗖𝗞𝗨𝗣👇 🤝⤵️\n{BACKUP_CHANNEL}\n{BACKUP_CHANNEL}\n𝗕𝗨𝗬 𝗖𝗽 𝗥𝗽⤴️\n\nBROTHER SISTER☞ {GROUP_1}\n\nMOM AND SON☞ {GROUP_2}\n\nUNCLE AUNTY☞ {GROUP_3}" 
+        await context.bot.copy_message(
+            chat_id=update.message.chat_id,
+            from_chat_id=VIDEO_GROUP,
+            message_id=copied_message.message_id,
+            caption=CAPTION
+        )
+    except Exception as e:
+        # Handle any errors
+        await update.message.reply_text(f'Error: {e}')
+
+
+# DESI_CHANNEL = -1002161236429
+async def DESI(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    # BOT_JOIN_IN_GROUP ='https://t.me/Best_adult_video_cbot?startgroup=true'
+    
+
+    await update.message.reply_text(f'{PRO}\n{BOT_JOIN_IN_GROUP}',reply_markup=keyboard1)
+    try:   
+        message_id = random.randint(1, 7007)
+        
+        # Copy a random message from the channel to the target group
+        copied_message = await context.bot.copy_message(
+            chat_id=VIDEO_GROUP,
+            from_chat_id=VIDEO_CHANNEL_2,
+            message_id=message_id
+        )
+
+        # Copy the same message back to the user with a caption
+        CAPTION = f"𝗝𝗢𝗜𝗡 𝗕𝗔𝗖𝗞𝗨𝗣👇 🤝⤵️\n{BACKUP_CHANNEL}\n{BACKUP_CHANNEL}\n𝗕𝗨𝗬 𝗖𝗽 𝗥𝗽⤴️\n\nBROTHER SISTER☞ {GROUP_1}\n\nMOM AND SON☞ {GROUP_2}\n\nUNCLE AUNTY☞ {GROUP_3}" 
+        await context.bot.copy_message(
+            chat_id=update.message.chat_id,
+            from_chat_id=VIDEO_GROUP,
+            message_id=copied_message.message_id,
+            caption=CAPTION
+        )
+        await save_chat_id(update, context)
+    except Exception as e:
+        # Handle any errors
+        await update.message.reply_text(f'Error: {e}')
+        # await save_chat_start(update, context)
+
+async def welcome_user(update: Update, context: CallbackContext) -> None:
+    await update.message.reply_text(f'{PRO}\n{BOT_JOIN_IN_GROUP}',reply_markup=keyboard1)
+    await update.message.reply_text(f'Click Here⤵️\n{BOT_JOIN_IN_GROUP}')
+    new_members = update.message.new_chat_members
+    for new_member in new_members:       
+        if new_member.first_name == f'{BOT_NAME}':
+            
+    
+            await update.message.reply_text('MOM SON VIDEO => http://t.me/+Yo0EIRg1FEM2MDM1')
+            # VIDEO_CHANNEL_1=-1002168320535
+            try:
+                message_id = random.randint(1, 100)
+        
+                # Copy a random message from the channel to the target group
+                copied_message = await context.bot.copy_message(
+                chat_id=VIDEO_CHANNEL_1,
+                from_chat_id=VIDEO_CHANNEL_1,
+                message_id=message_id
+                )
+
+                # Copy the same message back to the user with a caption
+                CAPTION =  f"𝗝𝗢𝗜𝗡 𝗕𝗔𝗖𝗞𝗨𝗣👇 🤝⤵️\n{BACKUP_CHANNEL}\n{BACKUP_CHANNEL}\n𝗕𝗨𝗬 𝗖𝗽 𝗥𝗽⤴️\n\nBROTHER SISTER☞ {GROUP_1}\n\nMOM AND SON☞ {GROUP_2}\n\nUNCLE AUNTY☞ {GROUP_3}" 
+                await context.bot.copy_message(
+                chat_id=update.message.chat_id,
+                from_chat_id=VIDEO_CHANNEL_1,
+                message_id=copied_message.message_id,
+                caption=CAPTION
+                 )
+            except Exception as e:
+                # Handle any errors
+                await update.message.reply_text(f'Error: {e}')
+        else:
+            await update.message.reply_text(f'{PRO}\n{BOT_JOIN_IN_GROUP}',reply_markup=keyboard1)
+            await update.message.reply_text(f'Click Here⤵️\n{BOT_JOIN_IN_GROUP}')
+
+
+
+async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
+ print(f"Update {update} caused error {context.error}")
+       
+
+if __name__ == '__main__':
+ print('Starting bot ...')
+app = Application.builder().token(TOKEN).build()
+
+
+app.add_handler(CommandHandler('start', start_command))
+
+
+
+
+app.add_handler(MessageHandler(filters.StatusUpdate.ALL, welcome_user))
+
+
+
+# #new function --->
+app.add_handler(MessageHandler(filters.Text(['𝐂𝐏🍌']), handle_cp))
+app.add_handler(MessageHandler(filters.Text(['𝐑𝐏🍆 𝐂𝐏🍌']), handle_rp))
+app.add_handler(MessageHandler(filters.Text(['✅𝐁𝐀𝐂𝐊𝐔𝐏']), BACK))
+#app.add_handler(MessageHandler(filters.Text(['🎥𝐇𝐎𝐖 𝐓𝐎 𝐏𝐋𝐀𝐘 वीडियो कैसे चलाएं🥵']), HOWTOPLY))
+app.add_handler(MessageHandler(filters.Text(['𝗠𝗢𝗠🎥𝐕𝐈𝐃𝐄𝐎']), MOM_AME))
+app.add_handler(MessageHandler(filters.Text(['𝐃𝐄𝐒𝐈💋𝐕𝐈𝐃𝐄𝐎$𝐏𝐈𝐂']), DESI))
+app.add_handler(MessageHandler(filters.Text(['𝐁𝐑𝐀𝐙𝐙𝐄𝐑𝐒👗𝐕𝐈𝐃$𝐏𝐈𝐂']), BRAZZ))
+app.add_handler(MessageHandler(filters.Text(['🥵𝘾𝙊𝙇𝙇𝙀𝙂𝙀👙']), SCHOOL_CLG))
+app.add_handler(MessageHandler(filters.Text(['𝘼𝙈𝙀𝙍𝙄𝘾𝘼𝙉❤️']), american))
+app.add_handler(MessageHandler(filters.Text(['𝙏𝘼𝙈𝙄𝙇🍌']), TMIL))
+# app.add_handler(MessageHandler(filters.Text(['𝐖𝐄𝐁🥵𝐒𝐄𝐑𝐈𝐄𝐒']), WEB))
+app.add_handler(MessageHandler(filters.Text(['𝐏𝐎𝐈𝐍𝐓𝐒📊']), points))
+app.add_handler(CommandHandler('rahul', broadcast_message))
+app.add_handler(CommandHandler('info', info))
+
+
+
+
+
+app.add_error_handler(error)
+
+
+
+updater ="Updater(token= 'API_TOKEN', workers=5, use_context=True)"
+
+dispatcher = "updater.dispatcher"
+ 
+
+
+print("Polling...")
+app.run_polling(poll_interval=3)
